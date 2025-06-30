@@ -20,14 +20,7 @@ signal subscribed_to_channel(channel_name: String)
 # The direct URL to Kick's Pusher application
 const KICK_PUSHER_URL = "wss://ws-us2.pusher.com/app/32cbd69e4b950bf97679?protocol=7&client=js&version=8.4.0&flash=false"
 
-@export var chatroom_id: int = 0:
-	set(value):
-		if value > 0:
-			chatroom_id = value
-		else:
-			push_warning("Chatroom ID must be a positive number.")
-
-@export var auto_connect_on_ready: bool = true
+var chatroom_id = 0
 
 enum ConnectionState {
 	DISCONNECTED,
@@ -41,10 +34,7 @@ var _state: ConnectionState = ConnectionState.DISCONNECTED
 
 
 func _ready() -> void:
-	if auto_connect_on_ready and chatroom_id > 0:
-		connect_to_chat()
-	elif auto_connect_on_ready:
-		push_warning("KickChat: 'auto_connect_on_ready' is true, but 'chatroom_id' is not set.")
+	pass
 
 
 func _process(_delta: float) -> void:
